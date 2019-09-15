@@ -51,13 +51,13 @@ class Wave {
       time =0;
 
     renderPhasor(60, 60, time, 255, 0, 0);
-    renderVSHMform(60, 60, 255, 0, 0, dirc);
+    renderSHMform(60, 60, 255, 0, 0, dirc);
     renderPointSHM(60, 60, time, 255, 0, 0, dirc);
 
     time +=1;
   }
 
-  void renderVSHMform(float pX, float pY, float R, float G, float B, int dir) {
+  void renderSHMform(float pX, float pY, float R, float G, float B, int dir) {
     strokeWeight(1);
     stroke(0, 50);
     if (dir==0) {   // Horizontal

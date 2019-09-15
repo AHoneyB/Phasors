@@ -1,7 +1,7 @@
 // SHM class
 class Wave {
 
-  ArrayList<Complex>[] waves;
+  ArrayList<Complex>[] wave;
   float px, py;
   float w, k, st;
   float amp;
@@ -19,9 +19,9 @@ class Wave {
     this.k=k;
     st=4;
     num = 100;
-    waves = new ArrayList[3];
+    wave = new ArrayList[3];
     for (int id=0;id<3;id++){
-      waves[id] = new ArrayList<Complex>();
+      wave[id] = new ArrayList<Complex>();
     }
     
     time =0;
@@ -30,7 +30,7 @@ class Wave {
   }
 
   void calcWave(int id) {
-    waves[id].clear();
+    wave[id].clear();
     Float re, im;
 
     for (int i=0; i<num; i++) {
@@ -40,7 +40,7 @@ class Wave {
         re = amp *  (float)(Math.cos((k*xx-w*tt+phase)));
         im = amp *  (float)(Math.sin((k*xx-w*tt+phase)));
         Complex c = new Complex(re, im);
-        waves[id].add(c);
+        wave[id].add(c);
       }
     }
   }
@@ -75,9 +75,9 @@ class Wave {
     strokeWeight(1);
     for (int t=0; t<num; t++) {
       if (dir==0) 
-        vertex(pX+st*t+1.5*amp, pY+waves[0].get(t).im );
+        vertex(pX+st*t+1.5*amp, pY+wave[0].get(t).im );
       else
-        vertex(pX+waves[0].get(t).re, pY+st*t+1.5*amp);
+        vertex(pX+wave[0].get(t).re, pY+st*t+1.5*amp);
     }
     endShape();
     stroke(0);
@@ -87,19 +87,19 @@ class Wave {
     fill(R, G, B);
     stroke(R, G, B);
     if (dir==0) {
-      ellipse(pX+st*t+1.5*amp, pY+waves[0].get(t).im, 5, 5);
-      ellipse(pX+1.2*amp, pY+waves[0].get(t).im, 5, 5);
-      line(pX+1.2*amp, pY, pX+1.2*amp, pY+waves[0].get(t).im);
+      ellipse(pX+st*t+1.5*amp, pY+wave[0].get(t).im, 5, 5);
+      ellipse(pX+1.2*amp, pY+wave[0].get(t).im, 5, 5);
+      line(pX+1.2*amp, pY, pX+1.2*amp, pY+wave[0].get(t).im);
     } else {
-      ellipse(pX+waves[0].get(t).re, pY+st*t+1.5*amp, 5, 5);
-      ellipse(pX+waves[0].get(t).re, pY+1.2*amp, 5, 5);
-      line(pX, pY+1.2*amp, pX+waves[0].get(t).re, pY+1.2*amp);
+      ellipse(pX+wave[0].get(t).re, pY+st*t+1.5*amp, 5, 5);
+      ellipse(pX+wave[0].get(t).re, pY+1.2*amp, 5, 5);
+      line(pX, pY+1.2*amp, pX+wave[0].get(t).re, pY+1.2*amp);
     }
   }
 
   void renderPhasor(float centerX, float centerY, int t, float R, float G, float B) {
-    float dx=waves[0].get(t).re;
-    float dy=waves[0].get(t).im;  
+    float dx=wave[0].get(t).re;
+    float dy=wave[0].get(t).im;  
     noFill();
     stroke(0, 50);
     strokeWeight(1);

@@ -1,4 +1,3 @@
-// SHM class
 class Wave {
 
   ArrayList<Complex> wave;

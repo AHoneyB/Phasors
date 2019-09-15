@@ -8,7 +8,7 @@ class Wave {
   float phase;
   int num;
   int time, x;
-
+  int date;
 
   Wave(float px, float py, float a, float k, float w) {
     this.px = px;

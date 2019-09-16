@@ -12,26 +12,29 @@ class Wave {
   int date;
   float fp=80;
 
-  Wave(String s, float px, float py, float a, float k, float w, float phase, float R, float G, float B) {
+  Wave(String s, float px, float py, float a, float k, float w, float p, float R, float G, float B) {
+    wave = new  ArrayList<Complex>();
     this.s = s;
     this.R = R;
     this.G = G;
     this.B = B;
     this.px = px;
     this.py = py;
-    this.amp = a;
-    this.phase = phase;
 
-    this.w=w;
-    this.k=k;
     st=4;
     num = 100;
-
-    wave = new  ArrayList<Complex>();
-
     time =0;
     x =0;
+    
+    setPhysicalValues(a, k,  w, p);
     calcWave();
+  }
+
+  void setPhysicalValues(float a, float k, float w, float p) {
+    this.amp = a;
+    this.phase = p;
+    this.w=w;
+    this.k=k;
   }
 
   void calcWave() {
@@ -82,6 +85,8 @@ class Wave {
       line(pX, pY+1.5*amp, pX, pY+1.5*amp+num*st );
     }
 
+    //textLabels( pX,  pY);
+
 
     beginShape();
     noFill();
@@ -98,9 +103,12 @@ class Wave {
     stroke(0);
   }
 
-  void renderPointSHM(float pX, float pY, int t, float R, float G, float B, int dir) {
+  void textLabels(float pX, float pY) {
     fill(0, 0, 0);
-    text(s, pX-40, pY-40);
+    text(s, pX+250, pY-amp-5);
+  }
+
+  void renderPointSHM(float pX, float pY, int t, float R, float G, float B, int dir) {
 
     fill(R, G, B);
     stroke(R, G, B);

@@ -21,8 +21,8 @@ class Wave {
     this.px = px;
     this.py = py;
 
-    st=4;
-    num = 100;
+    st=2;
+    num = 400;
     time =0;
     x =0;
     
@@ -36,14 +36,22 @@ class Wave {
     this.w=w;
     this.k=k;
   }
+  
+  void setFreq(float w){
+    this.w=w;
+  }
+  
+ 
 
   void calcWave() {
     wave.clear();
     Float re, im;
     for (int i=0; i<num; i++) {
       float xx = map(i, 0, num, 0, TWO_PI);
+      //float xx = map(i, 0, num, 0, TWO_PI/k);
       for (int j=0; j<num; j++) {
-        float tt = map(j, 0, num, 0, TWO_PI);
+        float tt = map(j, 0, num, 0, 4*TWO_PI);
+      //  float tt = map(j, 0, num, 0, TWO_PI/w);
         re = amp *  (float)(Math.cos((k*xx-w*tt+phase)));
         im = amp *  (float)(Math.sin((k*xx-w*tt+phase)));
         Complex c = new Complex(re, im);
